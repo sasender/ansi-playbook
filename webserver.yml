@@ -1,0 +1,39 @@
+---
+- name: HTTPD play
+  hosts: all
+  vars:
+    assets_dir: /var/www/html/static
+  become: true
+
+  tasks:
+  - name: Create static directory
+    file:
+      path: "{{ assets_dir }}"
+      state: directory
+
+  - name: Install HTTpd
+    yum:
+     name: httpd
+     state: present
+
+  - name: Start Httpd
+    service:
+      name: httpd
+      state: started
+
+  - name: copy index.html
+    copy:
+      src: index.html
+      dest: /var/www/html
+    notify:
+      - restart httpd
+
+  - name: start Httpd
+    service:
+      name: httpd
+      state: started
+  handlers:
+  - name: restart httpd
+    service:
+      name: httpd
+      state: reloaded
