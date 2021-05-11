@@ -1,0 +1,36 @@
+---
+- name: Testing the loops in ansible
+  hosts: webservers
+
+  vars:
+   - alpha: [ 'a', 'b', 'c', 'd' ]
+   - numbers: [ 1, 2, 3, 4 ]
+
+
+  tasks:
+  - name: print the output
+    shell: "echo {{ item }}"
+    loop:
+      - "one"
+      - "two"
+
+  - name: create two file
+    file: dest="{{ item }}" state=touch
+    with_items:
+     - "one"
+     - "two"
+
+  - name: testing together
+    debug: msg="{{ item.0 }} and {{ item.1 }}"
+
+    with_together:
+       - "{{ alpha }}"
+       - "{{ numbers }}"
+
+  - name: testing the random choice
+    debug: msg="{{ item }}"
+    with_random_choice:
+      - "go through the door"
+      - "drink from the goblet"
+      - "press the red button"
+      - "do nothing"
