@@ -1,0 +1,25 @@
+---
+- name: HTTPD play
+  hosts: webservers
+  vars:
+    assets_dir: /var/www/html/static
+  become: true
+
+  tasks:
+  - name: Create static directory
+    file: path={
+    yum: name=
+[root@ansible ansible]# cat muti.yml
+---
+- name: creating multi
+  hosts: all
+  tasks:
+  - name: multiple works in single book
+    file:
+      path: "/tmp/{{ item }}"
+      state: touch
+      mode: 622
+    with_items:
+    - dragon
+    - snowfall
+    - denver
