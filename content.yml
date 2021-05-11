@@ -1,0 +1,22 @@
+---
+- name: HTTPD play
+  hosts: webservers
+  vars:
+    assets_dir: /var/www/html/static
+  become: true
+
+  tasks:
+  - name: Create static directory
+    file: path={
+    yum: name=
+[root@ansible ansible]# cat content.yml
+---
+- name: create a content in a wolf file
+  hosts: all
+  tasks:
+  - name: content in wolf.txt
+    copy:
+      dest: "/tmp/stark/wolf.txt"
+      content:
+        wolf are really cute pretty animals
+        mostly we are seeing thise wolf in south africa
