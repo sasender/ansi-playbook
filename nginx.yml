@@ -1,0 +1,24 @@
+---
+
+- name: Install the nginix packages
+  hosts: webservers
+  become: true
+
+  tasks:
+   - name: add epel-release repo
+     yum:
+       name: amazon-linux-extras install epel -y
+       state: present
+
+
+   - name: Install nginx server
+     yum:
+       name: nginx
+       state: present
+
+
+
+   - name: Start nginx
+     service:
+       name: nginx
+       state: started
