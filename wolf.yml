@@ -1,0 +1,13 @@
+---
+- name: created file
+  hosts: all
+  tasks:
+  - name: ansible crate file if it doesnt exist example
+    file:
+      path: "/tmp/stark/wolf.txt"
+      state: touch
+  - name: crate content in wolf.txt
+    copy:
+      dest: "/tmp/stark/wolf.txt"
+      content:
+        hii arya stak
