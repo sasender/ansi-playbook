@@ -1,0 +1,15 @@
+---
+- name: playbook
+  hosts: all
+  become: yes
+  tasks:
+  - name: create a list of users
+    user:
+      name: "{{ item }}"
+      shell: /bin/bash
+      comment: "user {{ item }}"
+      state: absent
+    loop:
+    - arya
+    - snow
+    - lanister
